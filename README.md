@@ -1,0 +1,5 @@
+- 👋 Hi, I’m @AradAfk
+- 👀 I’m interested in :programming
+- 🌱 I’m currently learning :python1
+- 📫 How to reach me : instagram:_arfk._
+- ⚡ Fun fact: Sky is Blue
