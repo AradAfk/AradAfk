@@ -1,0 +1,26 @@
+from gooey import Gooey,GooeyParser
+@Gooey(program_name='gooey package')
+def main():
+   first_name1 = "arad"
+   family_name1 = "afkar"
+   parser = GooeyParser()
+   parser.add_argument('firstname',help='please enter your first name:')
+   parser.add_argument('familyname',help='please enter your family name:')
+   parser.add_argument('number1',help='please enter your number1:')
+   parser.add_argument('number2',help='please enter your number2:')
+   parser.add_argument('symbolmath',help='please enter your symbol math:')
+   args = parser.parse_args()
+   if str(args.firstname) == str(first_name1) and str(args.familyname) == str(family_name1) and int(args.number1) in range(10,100) and int(args.number2) in range(10,100) :
+      if str(args.symbolmath) == '+':
+        print(int(args.number1) + int(args.number2))
+      elif str(args.symbolmath) == '-':
+         print(int(args.number1) - int(args.number2))
+      elif str(args.symbolmath) == '*':
+         print(int(args.number1) * int(args.number2))
+      elif str(args.symbolmath) == '/':
+         print(int(args.number1) / int(args.number2))
+      else:
+         print('error!!')
+   else:
+      print('error!!!')
+main()
