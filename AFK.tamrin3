@@ -1,0 +1,11 @@
+from random import randint
+def main():
+    while True:
+       var1 = int(input('enter your guess number:'))
+       var_guess = randint(1,5)
+       if var1 == var_guess:
+           print('great!!your guess number is true')
+           break
+       else:
+           print('sorry!!your guess number is false')
+main()
