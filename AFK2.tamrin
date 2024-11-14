@@ -1,0 +1,19 @@
+from colorama import init , Back , Fore , Style
+def main():
+    var1 = int(input('enter your number1 between 6,11 :'))
+    var2 = int(input('enter your number2 between 6,11 :'))
+    for var1_loop in range(1,var1):
+        if var1_loop == 2:
+            continue
+        if var1_loop == 4:
+            print(Fore.RED+str(var1_loop),12,16,20,24,28)
+            continue
+        for var2_loop in range(1,var2):
+            if var2_loop == 2:
+                continue
+            if var2_loop == 4:
+                print(Fore.RED+str(var2_loop),end=' ')
+                continue
+            print(Fore.YELLOW+str(var1_loop * var2_loop)+Style.RESET_ALL,end=' ')    
+        print()    
+main()
