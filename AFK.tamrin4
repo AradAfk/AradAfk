@@ -1,0 +1,20 @@
+from random import randint
+from colorama import init , Back , Fore , Style
+def sign_in ():
+    lst = []
+    for var1_loop in range(2):
+        var1 = input('please enter your username:')
+        var2 = input('please enter your password:')
+        if var2.isdigit():
+           print(Fore.GREEN+'sign in is successfully'+Style.RESET_ALL)
+        else:
+           print(Fore.RED+'!!error!!'+Style.RESET_ALL)
+    for var2_loop in range(5):
+        var3 = int(input('enter your guess number:'))
+        var_guess = randint(1,5)
+        if var3 == var_guess:
+            lst.append('win')
+        else:
+            lst.append('lose')
+        print(lst)       
+sign_in()
