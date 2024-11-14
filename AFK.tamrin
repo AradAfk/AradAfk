@@ -1,0 +1,26 @@
+from gooey import Gooey, GooeyParser
+@Gooey(program_name='gooey package')
+def main():
+   parser = GooeyParser()
+   parser.add_argument('number1',help='enter your number1:')
+   parser.add_argument('number2',help='enter your number2:')
+   parser.add_argument('number3',help='enter your number3:')
+   parser.add_argument('number4',help='enter your number4:')
+   args = parser.parse_args()
+   if int(args.number1) % 2 == int(0):
+      print('number1 : zoj')
+   else:
+      print('number1 : fard')
+   if int(args.number2) % 2 == int(0):
+      print('number2 : zoj')
+   else:
+      print('number2 : fard')
+   if int(args.number3) % 2 == int(0):
+      print('number3 : zoj')
+   else:
+      print('number3 : fard') 
+   if int(args.number4) % 2 == int(0):
+      print('number4 : zoj')
+   else:
+      print('number4 : fard')  
+main()
