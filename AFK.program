@@ -1,0 +1,152 @@
+from gooey import Gooey , GooeyParser
+from random import randint
+import math
+@Gooey(program_name = 'game program')
+def main():
+    parser = GooeyParser()
+    sp = parser.add_subparsers(dest = 'forfunction')
+    ap = sp.add_parser('intro')
+    ag = ap.add_argument_group('introduction')
+    ag.add_argument('description', widget = 'Textarea', gooey_options ={'initial_value' : 'welcome to my game this is program game and i hope you guys enjoy while you guys play this game :)','height':300,'readonly':True})
+
+    ap1 = sp.add_parser('random_game')
+    ap1.add_argument('guess_number', help = 'enter your guess number in range (1,5):')
+
+    ap2 = sp.add_parser('even_odd')
+    ap2.add_argument('even_odd_number1',help = 'enter your number1:')
+    ap2.add_argument('even_odd_number2',help = 'enter your number2:')
+    ap2.add_argument('even_odd_number3',help = 'enter your number3:')
+    ap2.add_argument('even_odd_number4',help = 'enter your number4:')
+    ap2.add_argument('even_odd_number5',help = 'enter your number5:')
+
+    ap3 = sp.add_parser('calculator')
+    ap3.add_argument('calculator_number1', help = 'enter your number1:')
+    ap3.add_argument('calculator_number2', help = 'enter your number2:')
+    ap3.add_argument('calculator_symbol', choices = ['+', '-', '*', '/','sqrt'], help = 'select symbol')
+
+    ap4 = sp.add_parser('registration')
+    ap4.add_argument('username1', help = 'enter your username1:')
+    ap4.add_argument('password1', help = 'enter your password1:')
+    ap4.add_argument('username2', help = 'enter your username2:')
+    ap4.add_argument('password2', help = 'enter your password2:')
+    ap4.add_argument('username3', help = 'enter your username3:')
+    ap4.add_argument('password3', help = 'enter your password3:')
+    ap4.add_argument('username4', help = 'enter your username4:')
+    ap4.add_argument('password4', help = 'enter your password4:')
+    ap4.add_argument('username5', help = 'enter your username5:')
+    ap4.add_argument('password5', help = 'enter your password5:')
+
+
+
+    args = parser.parse_args()
+    return args
+
+def subparser2(guess_number):
+    random_number = randint(1,5)
+    if random_number == int(guess_number):
+        print('correct')
+        print('the guess number is : {} and the random number is : {}'.format(guess_number,random_number))
+    else:
+        print('incorrect!')
+        print('the guess number is : {} and the random number is : {}'.format(guess_number,random_number))
+
+
+
+def subparser3(even_odd_number1,even_odd_number2,even_odd_number3,even_odd_number4,even_odd_number5):
+    lst1 = []
+    lst2 = []
+    if int(even_odd_number1) % 2 == int(0) :
+        print('even1')
+        lst1.append(int(even_odd_number1))
+    else:
+        print('odd1')
+        lst2.append(int(even_odd_number1))
+    if int(even_odd_number2) % 2 == int(0) :
+        print('even2')
+        lst1.append(int(even_odd_number2))
+    else:
+        print('odd2')
+        lst2.append(int(even_odd_number2))
+    if int(even_odd_number3) % 2 == int(0) :
+        print('even3')
+        lst1.append(int(even_odd_number3))
+    else:
+        print('odd3')
+        lst2.append(int(even_odd_number3))
+    if int(even_odd_number4) % 2 == int(0) :
+        print('even4')
+        lst1.append(int(even_odd_number4))
+    else:
+        print('odd4')
+        lst2.append(int(even_odd_number4))
+    if int(even_odd_number5) % 2 == int(0) :
+        print('even5')
+        lst1.append(int(even_odd_number5))
+    else:
+        print('odd5')
+        lst2.append(int(even_odd_number5))
+
+    total1 = sum(lst1)
+    total2 = sum(lst2)
+    print(f'the sum even number is :{total1}')
+    print(f'the sum odd number is :{total2}')
+
+
+
+def subparser4(calculator_number1,calculator_number2,calculator_symbol):
+    if calculator_symbol == '+':
+        print(int(calculator_number1)+int(calculator_number2))
+    elif calculator_symbol == '-':
+        print(int(calculator_number1)-int(calculator_number2))
+    elif calculator_symbol == '*':
+        print(int(calculator_number1)*int(calculator_number2))
+    elif calculator_symbol == '/':
+        print(int(calculator_number1)/int(calculator_number2))
+    elif calculator_symbol == 'sqrt':
+        print(math.sqrt(int(calculator_number1)))
+        print(math.sqrt(int(calculator_number2)))
+
+
+
+def subparser5(username1,password1,username2,password2,username3,password3,username4,password4,username5,password5):
+ lst_username = []
+ lst_password = []
+ with open('AFK6.tamrin','a')as f:
+   lst_username.append(username1)
+   lst_username.append(username2)
+   lst_username.append(username3)
+   lst_username.append(username4)
+   lst_username.append(username5)
+   lst_password.append(password1)
+   lst_password.append(password2)
+   lst_password.append(password3)
+   lst_password.append(password4)
+   lst_password.append(password5)
+   f.write(str(lst_username))
+   f.write('       ')
+   f.write(str(lst_password))
+
+
+
+# def subparser6(): 'edit soon'
+
+
+
+    
+
+
+
+    
+
+
+
+
+complexity = main()
+if complexity.forfunction == 'random_game':
+    subparser2(complexity.guess_number)
+if complexity.forfunction =='even_odd':
+    subparser3(complexity.even_odd_number1,complexity.even_odd_number2,complexity.even_odd_number3,complexity.even_odd_number4,complexity.even_odd_number5)
+if complexity.forfunction == 'calculator':
+    subparser4(complexity.calculator_number1,complexity.calculator_number2,complexity.calculator_symbol)
+if complexity.forfunction == 'registration':
+    subparser5(complexity.username1,complexity.password1,complexity.username2,complexity.password2,complexity.username3,complexity.password3,complexity.username4,complexity.password4,complexity.username5,complexity.password5)
