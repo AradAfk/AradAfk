@@ -1,0 +1,47 @@
+import json
+import requests
+
+class BourseDataFetcher:
+    def __init__(self, api_url, output_file="bourse_data.json"):
+        self.api_url = api_url
+        self.output_file = output_file
+
+    def fetch_data(self):
+        try:
+            response = requests.get(self.api_url)
+            response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching data: {e}")
+            return None
+
+    def process_data(self, data):
+        processed_data = []
+        for item in data:
+            processed_data.append({"symbol": item["symbol"], "price": item["price"]})
+        return processed_data
+
+    def save_to_json(self, data):
+        try:
+            with open(self.output_file, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+            print(f"Data saved to {self.output_file}")
+            return self.output_file
+        except IOError as e:
+            print(f"Error saving to JSON file: {e}")
+            return None
+
+    def run(self):
+        data = self.fetch_data()
+        if data:
+            processed_data = self.process_data(data)
+            file_path = self.save_to_json(processed_data)
+            return file_path
+        else:
+            return None
+
+# Example usage:
+api_url = "https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency_v2.json"
+fetcher = BourseDataFetcher(api_url)
+file_path = fetcher.run()
+print(f"The file is saved in {file_path}")
