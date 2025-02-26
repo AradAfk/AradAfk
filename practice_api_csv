@@ -1,0 +1,36 @@
+import requests
+import csv
+
+def api_call_decorator(func):
+    """
+    A decorator for making API calls.
+    """
+    def wrapper():
+        print("Calling API...")
+        url = "https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency_v2.json"
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Check for HTTP errors
+            data = response.json()
+            print("API call successful!")
+            return func(data)
+        except requests.exceptions.RequestException as e:
+            print(f"Error calling API: {e}")
+            return None
+    return wrapper
+
+@api_call_decorator
+def save_to_csv(data):
+    """
+    Saves data to a Csv file.
+    """
+    if data:
+        try:
+            with open('DataBase.csv', 'w', newline='') as csv_file:
+                Var_csv = csv.writer(csv_file)
+                Var_csv.writerow(data)
+        except Exception as e:
+            print(f"Error saving CSV file: {e}")
+
+if __name__ == "__main__":
+    save_to_csv()
