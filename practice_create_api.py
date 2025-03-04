@@ -37,6 +37,7 @@ def patch_data(patch_name:str,data:DATA):
         if values['name'] == patch_name:
             values['price'] = data.price
             return read_file1
+    raise HTTPException(status_code=404,detail='put error')
         
 @app.delete('/deleted/{delete_name}')
 def delete_data(delete_name:str):
@@ -44,5 +45,5 @@ def delete_data(delete_name:str):
         if values['name'] == delete_name:
             del read_file1[i]
             return read_file1
-        
+    raise HTTPException(status_code=404,detail='put error')
     
