@@ -31,5 +31,18 @@ def put_data(put_price:str,data:DATA):
             return read_file1
     raise HTTPException(status_code=404,detail='put error')
     
-
+@app.patch('/patchd/{patch_name}')
+def patch_data(patch_name:str,data:DATA):
+    for i , values in enumerate(read_file1):
+        if values['name'] == patch_name:
+            values['price'] = data.price
+            return read_file1
+        
+@app.delete('/deleted/{delete_name}')
+def delete_data(delete_name:str):
+    for i, values in enumerate(read_file1):
+        if values['name'] == delete_name:
+            del read_file1[i]
+            return read_file1
+        
     
